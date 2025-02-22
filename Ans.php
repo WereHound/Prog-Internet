@@ -13,10 +13,18 @@
     <h1>Hello, world!</h1>
 
     <?php
-    $v1 = $_POST['V1'];
-    $v2 = $_POST['V2'];
-    $v3 = $v1 + $v2;
-    echo $v3;
+    if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+
+        try {
+
+            $v1 = $_POST['V1'];
+            $v2 = $_POST['V2'];
+            $v3 = $v1 + $v2;
+            echo $v3;
+        } catch (Exception $e) {
+            echo $e->getMessage();
+        }
+    }
     ?>
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
