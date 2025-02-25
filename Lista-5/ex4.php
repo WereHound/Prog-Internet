@@ -85,15 +85,26 @@ ordenada pelos preços após a aplicação do imposto.
 
         try {
 
-            $v1 = $_POST['V1'];
+            $array = [];
+            for ($i = 1; $i <= 5; $i++) {
 
-            $count = 0;
-            foreach ($v1 as $i) {
-                $count++;
+                ${"item" . $i} = ["Chave" => $_POST['Nome-' . $i], "Valor" => ($_POST['Preco-' . $i] * 1.15)];
+                $array[] = ${"item" . $i};
+            }
+
+            function sorter($a, $b)
+            {
+                return strcmp($a["Valor"], $b["Valor"]);
+            }
+
+            usort($array, "sorter");
+
+
+            foreach ($array as $value) {
+                echo "Chave = " . $value["Chave"] . "\tPreço = " . $value["Valor"] . "</br>";
             }
 
 
-            echo "Número de caracteres = " . $count;
         } catch (Exception $e) {
             echo $e->getMessage();
         }
