@@ -15,7 +15,7 @@
     <form method="post" action="">
 
         <div class="mb-3">
-            <label for="V1" class="form-label">Valor 1</label>
+            <label for="V1" class="form-label">Valor do produto</label>
             <input type="decimal" id="V1" name="V1" class="form-control" required="">
         </div>
 
@@ -35,8 +35,13 @@ sobre ele e exibido o novo valor do produto.
         try {
 
             $v1 = $_POST['V1'];
-            
-            echo "";
+
+            if ($v1 > 100) {
+                $v1 *= 0.85;
+            }
+
+
+            echo "Novo valor = $v1";
         } catch (Exception $e) {
             echo $e->getMessage();
         }

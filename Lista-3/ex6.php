@@ -15,7 +15,7 @@
     <form method="post" action="">
 
         <div class="mb-3">
-            <label for="V1" class="form-label">Valor 1</label>
+            <label for="V1" class="form-label">Valor</label>
             <input type="decimal" id="V1" name="V1" class="form-control" required="">
         </div>
 
@@ -32,10 +32,11 @@ for para imprimir todos os números de 1 até o número informado.
     if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
         try {
-
             $v1 = $_POST['V1'];
-            
-            echo "";
+            for ($i = 0; $i <= $v1; $i++) {
+                echo "$i";
+
+            }
         } catch (Exception $e) {
             echo $e->getMessage();
         }

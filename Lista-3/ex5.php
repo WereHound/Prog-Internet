@@ -15,7 +15,7 @@
     <form method="post" action="">
 
         <div class="mb-3">
-            <label for="V1" class="form-label">Valor 1</label>
+            <label for="V1" class="form-label">Valor do mês</label>
             <input type="decimal" id="V1" name="V1" class="form-control" required="">
         </div>
 
@@ -33,9 +33,62 @@ Janeiro, 2 – Fevereiro... Exiba o nome do mês associado = USE SWITCH
 
         try {
 
-            $v1 = $_POST['V1'];
-            
-            echo "";
+            switch ($_POST['V1']) {
+                case '1':
+
+                    echo "Janeiro";
+                    break;
+                case '2':
+
+                    echo "Fevereiro";
+                    break;
+                case '3':
+
+                    echo "Março";
+                    break;
+                case '4':
+
+                    echo "Abril";
+                    break;
+                case '5':
+
+                    echo "Maio";
+                    break;
+                case '6':
+
+                    echo "Junho";
+                    break;
+                case '7':
+
+                    echo "Julho";
+                    break;
+                case '8':
+
+                    echo "Agosto";
+                    break;
+                case '9':
+
+                    echo "Setembro";
+                    break;
+                case '10':
+
+                    echo "Outubro";
+                    break;
+                case '11':
+
+                    echo "Novembro";
+                    break;
+                case '12':
+
+                    echo "Dezembro";
+                    break;
+
+                default:
+
+                    echo "Valor invalido!";
+                    break;
+            }
+
         } catch (Exception $e) {
             echo $e->getMessage();
         }

@@ -15,8 +15,12 @@
     <form method="post" action="">
 
         <div class="mb-3">
-            <label for="V1" class="form-label">Valor 1</label>
+            <label for="V1" class="form-label">Valor A</label>
             <input type="decimal" id="V1" name="V1" class="form-control" required="">
+        </div>
+        <div class="mb-3">
+            <label for="V2" class="form-label">Valor B</label>
+            <input type="decimal" id="V2" name="V2" class="form-control" required="">
         </div>
 
         <button type="submit" class="btn btn-primary">Enviar</button>
@@ -37,8 +41,19 @@ para A=5, B=5 você deve imprimir na tela: “Números iguais: 5”.
         try {
 
             $v1 = $_POST['V1'];
-            
-            echo "";
+            $v2 = $_POST['V2'];
+
+            $print = "";
+
+            if ($v1 < $v2) {
+                $print = "$v1 $v2";
+            } elseif ($v1 > $v2) {
+                $print = "$v2 $v1";
+            } else {
+                $print = "Números iguais: $v1";
+            }
+
+            echo "$print";
         } catch (Exception $e) {
             echo $e->getMessage();
         }
