@@ -34,9 +34,9 @@ for para imprimir a tabuada desse número de 1 a 10.
         try {
 
             $v1 = $_POST['V1'];
-            for ($i = 0; $i < $v1; $i++) {
+            for ($i = 0; $i <= 10; $i++) {
 
-                echo "";
+                echo "Resultado = " . ($i * $v1);
             }
         } catch (Exception $e) {
             echo $e->getMessage();
