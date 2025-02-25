@@ -12,11 +12,62 @@
 <body>
 
 
-    <form method="post" action="">
+    <form method="post" action="" class="m-5">
 
-        <div class="mb-3">
-            <label for="V1" class="form-label">Palavra</label>
-            <input type="text" id="V1" name="V1" class="form-control" required="">
+
+        <div class="row">
+            <div class="col">
+                <label for="Titulo-1">Título</label>
+                <input type="text" id="Titulo-1" name="Titulo-1" class="form-control" placeholder="">
+            </div>
+            <div class="col">
+                <label for="Quantidade-1">Quantidade em estoque</label>
+                <input type="number" id="Quantidade-1" name="Quantidade-1" class="form-control" placeholder="">
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col">
+                <label for="Titulo-2">Título</label>
+                <input type="text" id="Titulo-2" name="Titulo-2" class="form-control" placeholder="">
+            </div>
+            <div class="col">
+                <label for="Quantidade-2">Quantidade em estoque</label>
+                <input type="number" id="Quantidade-2" name="Quantidade-2" class="form-control" placeholder="">
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col">
+                <label for="Titulo-3">Título</label>
+                <input type="text" id="Titulo-3" name="Titulo-3" class="form-control" placeholder="">
+            </div>
+            <div class="col">
+                <label for="Quantidade-3">Quantidade em estoque</label>
+                <input type="number" id="Quantidade-3" name="Quantidade-3" class="form-control" placeholder="">
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col">
+                <label for="Titulo-4">Título</label>
+                <input type="text" id="Titulo-4" name="Titulo-4" class="form-control" placeholder="">
+            </div>
+            <div class="col">
+                <label for="Quantidade-4">Quantidade em estoque</label>
+                <input type="number" id="Quantidade-4" name="Quantidade-4" class="form-control" placeholder="">
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col">
+                <label for="Titulo-5">Título</label>
+                <input type="text" id="Titulo-5" name="Titulo-5" class="form-control" placeholder="">
+            </div>
+            <div class="col">
+                <label for="Quantidade-5">Quantidade em estoque</label>
+                <input type="number" id="Quantidade-5" name="Quantidade-5" class="form-control" placeholder="">
+            </div>
         </div>
 
         <button type="submit" class="btn btn-primary">Enviar</button>
@@ -36,15 +87,33 @@ baixa quantidade. Exiba a lista ordenada pelo título dos livros.
 
         try {
 
-            $v1 = $_POST['V1'];
+            $array = [];
+            for ($i = 1; $i <= 5; $i++) {
 
-            $count = 0;
-            foreach ($v1 as $i) {
-                $count++;
+                ${"item" . $i} = ["Chave" => $_POST['Titulo-' . $i], "Valor" => $_POST['Quantidade-' . $i]];
+                $array[] = ${"item" . $i};
+            }
+
+            echo "Livros com baixa quantidade: </br>";
+            foreach ($array as $value) {
+                if ($value["Valor"] < 5) {
+                    echo $value["Chave"] . "</br>";
+                }
+            }
+
+            function sorter($a, $b)
+            {
+                return strcmp($a["Chave"], $b["Chave"]);
+            }
+
+            usort($array, "sorter");
+
+
+            foreach ($array as $value) {
+                echo "Chave = " . $value["Chave"] . "\tQuantidade em estoque = " . $value["Valor"] . "</br>";
             }
 
 
-            echo "Número de caracteres = " . $count;
         } catch (Exception $e) {
             echo $e->getMessage();
         }
