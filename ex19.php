@@ -16,7 +16,7 @@
 
         <div class="mb-3">
             <label for="V1" class="form-label">Dias</label>
-            <input type="number" id="V1" name="V1" class="form-control" required="">
+            <input type="decimal" id="V1" name="V1" class="form-control" required="">
         </div>
 
         <button type="submit" class="btn btn-primary">Enviar</button>
