@@ -25,6 +25,11 @@
 
 
     <?php
+    /*
+Faça um programa em PHP onde o valor de um produto é informado. Se 
+esse valor for superior a R$100,00 deve ser aplicado um desconto de 15% 
+sobre ele e exibido o novo valor do produto.
+    */
     if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
         try {

@@ -25,6 +25,10 @@
 
 
     <?php
+    /*
+Faça um programa que leia o valor associado a um mês. Exemplo: 1 –
+Janeiro, 2 – Fevereiro... Exiba o nome do mês associado = USE SWITCH
+    */
     if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
         try {

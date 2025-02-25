@@ -25,6 +25,10 @@
 
 
     <?php
+    /*
+Crie um formulário para que o usuário informe um número. Use um loop 
+for para calcular o fatorial desse número e exibir o resultado.
+    */
     if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
         try {
