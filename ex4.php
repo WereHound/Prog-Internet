@@ -36,12 +36,10 @@
 
             $v1 = $_POST['V1'];
             $v2 = $_POST['V2'];
-            if ($v2 != 0)
-            {
+            if ($v2 != 0) {
                 $v3 = $v1 / $v2;
                 echo $v3;
-            }
-            else
+            } else
                 echo "Divisao por zero";
         } catch (Exception $e) {
             echo $e->getMessage();

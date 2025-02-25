@@ -12,6 +12,44 @@
 <body>
 
 
+    <form method="post" action="">
+
+        <div class="mb-3">
+            <label for="V1" class="form-label">Valor 1</label>
+            <input type="number" id="V1" name="V1" class="form-control" required="">
+        </div>
+
+        <div class="mb-3">
+            <label for="V2" class="form-label">Valor 2</label>
+            <input type="number" id="V2" name="V2" class="form-control" required="">
+        </div>
+
+        <button type="submit" class="btn btn-primary">Enviar</button>
+    </form>
+
+
+
+    <?php
+    if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+
+        try {
+
+            $dias = $_POST['V1'];
+            $horas = $dias * 24;
+            $minutos = $horas * 60;
+            $segundos = $minutos * 60;
+
+            $horasFinal = floor($segundos / 3600);
+            $resto = $segundos % 3600;
+            $minutosFinal = floor($resto / 60);
+            $resto = $resto % 60;
+            $segundosFinal = $resto;
+            echo "Horas: " . $horasFinal . "\tMinutos: " . $minutosFinal . "\tSegundos: " . $segundosFinal;
+        } catch (Exception $e) {
+            echo $e->getMessage();
+        }
+    }
+    ?>
 
 
 

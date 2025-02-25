@@ -12,7 +12,31 @@
 <body>
 
 
+    <form method="post" action="">
 
+        <div class="mb-3">
+            <label for="V1" class="form-label">Valor 1</label>
+            <input type="number" id="V1" name="V1" class="form-control" required="">
+        </div>
+
+        <button type="submit" class="btn btn-primary">Enviar</button>
+    </form>
+
+
+
+    <?php
+    if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+
+        try {
+
+            $v1 = $_POST['V1'];
+            $v2 = ($v1 - 32) * (5 / 9);
+            echo $v2 . " Celsius";
+        } catch (Exception $e) {
+            echo $e->getMessage();
+        }
+    }
+    ?>
 
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
