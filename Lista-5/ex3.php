@@ -12,11 +12,81 @@
 <body>
 
 
-    <form method="post" action="">
+    <form method="post" action="" class="m-5">
 
-        <div class="mb-3">
-            <label for="V1" class="form-label">Palavra</label>
-            <input type="text" id="V1" name="V1" class="form-control" required="">
+        <div class="row">
+            <div class="col">
+                <label for="Codigo-1">Código</label>
+                <input type="text" id="Codigo-1" name="Codigo-1" class="form-control" placeholder="">
+            </div>
+            <div class="col">
+                <label for="Nome-1">Nome</label>
+                <input type="text" id="Nome-1" name="Nome-1" class="form-control" placeholder="">
+            </div>
+            <div class="col">
+                <label for="Preco-1">Preço</label>
+                <input type="decimal" id="Preco-1" name="Preco-1" class="form-control" placeholder="">
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col">
+                <label for="Codigo-2">Código</label>
+                <input type="text" id="Codigo-2" name="Codigo-2" class="form-control" placeholder="">
+            </div>
+            <div class="col">
+                <label for="Nome-2">Nome</label>
+                <input type="text" id="Nome-2" name="Nome-2" class="form-control" placeholder="">
+            </div>
+            <div class="col">
+                <label for="Preco-2">Preço</label>
+                <input type="decimal" id="Preco-2" name="Preco-2" class="form-control" placeholder="">
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col">
+                <label for="Codigo-3">Código</label>
+                <input type="text" id="Codigo-3" name="Codigo-3" class="form-control" placeholder="">
+            </div>
+            <div class="col">
+                <label for="Nome-3">Nome</label>
+                <input type="text" id="Nome-3" name="Nome-3" class="form-control" placeholder="">
+            </div>
+            <div class="col">
+                <label for="Preco-3">Preço</label>
+                <input type="decimal" id="Preco-3" name="Preco-3" class="form-control" placeholder="">
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col">
+                <label for="Codigo-4">Código</label>
+                <input type="text" id="Codigo-4" name="Codigo-4" class="form-control" placeholder="">
+            </div>
+            <div class="col">
+                <label for="Nome-4">Nome</label>
+                <input type="text" id="Nome-4" name="Nome-4" class="form-control" placeholder="">
+            </div>
+            <div class="col">
+                <label for="Preco-4">Preço</label>
+                <input type="decimal" id="Preco-4" name="Preco-4" class="form-control" placeholder="">
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col">
+                <label for="Codigo-5">Código</label>
+                <input type="text" id="Codigo-5" name="Codigo-5" class="form-control" placeholder="">
+            </div>
+            <div class="col">
+                <label for="Nome-5">Nome</label>
+                <input type="text" id="Nome-5" name="Nome-5" class="form-control" placeholder="">
+            </div>
+            <div class="col">
+                <label for="Preco-5">Preço</label>
+                <input type="decimal" id="Preco-5" name="Preco-5" class="form-control" placeholder="">
+            </div>
         </div>
 
         <button type="submit" class="btn btn-primary">Enviar</button>
@@ -37,15 +107,31 @@ do produto.
 
         try {
 
-            $v1 = $_POST['V1'];
+            $array = [];
+            for ($i = 1; $i <= 5; $i++) {
 
-            $count = 0;
-            foreach ($v1 as $i) {
-                $count++;
+                ${"item" . $i} = ["Chave" => $_POST['Codigo-' . $i], "Valor" => ["Nome" => $_POST['Nome-' . $i], "Preco" => $_POST['Preco-' . $i]]];
+                $array[] = ${"item" . $i};
             }
 
+            foreach ($array as $value) {
+                if ($value["Valor"]["Preco"] > 100) {
+                    $value["Valor"]["Preco"] *= 0.9;
+                }
 
-            echo "Número de caracteres = " . $count;
+            }
+            function sorter($a, $b)
+            {
+                return strcmp($a["Valor"]["Nome"], $b["Valor"]["Nome"]);
+            }
+
+            usort($array, "sorter");
+
+
+            foreach ($array as $value) {
+                echo "Chave = " . $value["Chave"] . "\tNome = " . $value["Valor"]["Nome"] . "\tPreço = " . $value["Valor"]["Preco"] . "</br>";
+            }
+
         } catch (Exception $e) {
             echo $e->getMessage();
         }
