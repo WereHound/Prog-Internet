@@ -33,9 +33,8 @@ for para imprimir todos os números de 1 até o número informado.
 
         try {
             $v1 = $_POST['V1'];
-            for ($i = 0; $i <= $v1; $i++) {
+            for ($i = 1; $i <= $v1; $i++) {
                 echo "$i";
-
             }
         } catch (Exception $e) {
             echo $e->getMessage();

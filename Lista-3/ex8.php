@@ -36,8 +36,13 @@ informado até 1.
         try {
 
             $v1 = $_POST['V1'];
-            
-            echo "";
+            $i = 0;
+            do {
+                echo "$v1";
+                $v1--;
+            } while ($v1 >= 1);
+
+
         } catch (Exception $e) {
             echo $e->getMessage();
         }

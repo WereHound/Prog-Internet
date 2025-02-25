@@ -33,9 +33,15 @@ for para calcular o fatorial desse número e exibir o resultado.
 
         try {
 
+
             $v1 = $_POST['V1'];
-            
-            echo "";
+            $fact = 1;
+            for ($i = 1; $i <= $v1; $i++) {
+                $fact *= $i;
+            }
+
+
+            echo "Resultado Factorial = $fact";
         } catch (Exception $e) {
             echo $e->getMessage();
         }

@@ -34,8 +34,10 @@ for para imprimir a tabuada desse número de 1 a 10.
         try {
 
             $v1 = $_POST['V1'];
-            
-            echo "";
+            for ($i = 0; $i < $v1; $i++) {
+
+                echo "";
+            }
         } catch (Exception $e) {
             echo $e->getMessage();
         }

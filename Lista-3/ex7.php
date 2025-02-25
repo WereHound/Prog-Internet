@@ -35,8 +35,14 @@ resultado.
         try {
 
             $v1 = $_POST['V1'];
-            
-            echo "";
+            $i = 1;
+            $soma = 0;
+            while ($i <= $v1) {
+                $soma += $i;
+                $i++;
+            }
+
+            echo "Soma = $soma";
         } catch (Exception $e) {
             echo $e->getMessage();
         }
