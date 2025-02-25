@@ -15,8 +15,13 @@
     <form method="post" action="">
 
         <div class="mb-3">
-            <label for="V1" class="form-label">Palavra</label>
+            <label for="V1" class="form-label">Palavra 1</label>
             <input type="text" id="V1" name="V1" class="form-control" required="">
+        </div>
+
+        <div class="mb-3">
+            <label for="V2" class="form-label">Palavra 2</label>
+            <input type="text" id="V2" name="V2" class="form-control" required="">
         </div>
 
         <button type="submit" class="btn btn-primary">Enviar</button>
@@ -26,8 +31,8 @@
 
     <?php
     /*
-Crie um programa em PHP em que seja lida uma palavra e apresentado o número de 
-caracteres dessa palavra.
+Crie um programa em PHP em que sejam lidas duas palavras, e verifique se a segunda palavra 
+está contida na primeira.
     */
     if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
@@ -35,13 +40,20 @@ caracteres dessa palavra.
 
             $v1 = $_POST['V1'];
 
-            $count = 0;
+            $v2 = $_POST['V2'];
+
+            $counter = 0;
             foreach ($v1 as $i) {
-                $count++;
+                if ($i == $v2[$counter]) {
+                    $counter++;
+                } else {
+                    $counter = 0;
+                }
+                if ($counter == strlen($v2)) {
+                    echo "A segunda palavra está contida na primeira.";
+                }
             }
 
-
-            echo "Número de caracteres = " . $count;
         } catch (Exception $e) {
             echo $e->getMessage();
         }

@@ -15,9 +15,19 @@
     <form method="post" action="">
 
         <div class="mb-3">
-            <label for="V1" class="form-label">Palavra</label>
-            <input type="text" id="V1" name="V1" class="form-control" required="">
+            <label for="V1" class="form-label">Valor dia</label>
+            <input type="decimal" id="V1" name="V1" class="form-control" required="">
         </div>
+
+        <div class="mb-3">
+            <label for="V2" class="form-label">Valor mês</label>
+            <input type="decimal" id="V2" name="V2" class="form-control" required="">
+        </div>
+        <div class="mb-3">
+            <label for="V3" class="form-label">Valor ano</label>
+            <input type="decimal" id="V3" name="V3" class="form-control" required="">
+        </div>
+
 
         <button type="submit" class="btn btn-primary">Enviar</button>
     </form>
@@ -26,22 +36,23 @@
 
     <?php
     /*
-Crie um programa em PHP em que seja lida uma palavra e apresentado o número de 
-caracteres dessa palavra.
+Crie um programa em PHP que leia três valores: dia, mês e ano. Verifique se a data informada 
+é válida e apresente a data em formato dd/mm/YYYY.
     */
     if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
         try {
 
             $v1 = $_POST['V1'];
+            $v2 = $_POST['V2'];
+            $v3 = $_POST['V3'];
 
-            $count = 0;
-            foreach ($v1 as $i) {
-                $count++;
+            if (checkdate($v2, $v1, $v3)) {
+                echo "Data informada é válida\t" . $v1 . "/" . $v2 . "/" . $v3;
+            } else {
+                echo "Data invalida";
             }
 
-
-            echo "Número de caracteres = " . $count;
         } catch (Exception $e) {
             echo $e->getMessage();
         }

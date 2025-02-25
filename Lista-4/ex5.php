@@ -15,8 +15,8 @@
     <form method="post" action="">
 
         <div class="mb-3">
-            <label for="V1" class="form-label">Palavra</label>
-            <input type="text" id="V1" name="V1" class="form-control" required="">
+            <label for="V1" class="form-label">Valor 1</label>
+            <input type="decimal" id="V1" name="V1" class="form-control" required="">
         </div>
 
         <button type="submit" class="btn btn-primary">Enviar</button>
@@ -26,22 +26,15 @@
 
     <?php
     /*
-Crie um programa em PHP em que seja lida uma palavra e apresentado o número de 
-caracteres dessa palavra.
+Crie um programa em PHP que leia um valor e retorna a raiz quadrada desse número.
     */
     if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
         try {
 
             $v1 = $_POST['V1'];
+            echo sqrt($v1);
 
-            $count = 0;
-            foreach ($v1 as $i) {
-                $count++;
-            }
-
-
-            echo "Número de caracteres = " . $count;
         } catch (Exception $e) {
             echo $e->getMessage();
         }

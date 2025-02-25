@@ -12,6 +12,7 @@
 <body>
 
 
+
     <form method="post" action="">
 
         <div class="mb-3">
@@ -26,8 +27,8 @@
 
     <?php
     /*
-Crie um programa em PHP em que seja lida uma palavra e apresentado o número de 
-caracteres dessa palavra.
+Crie um programa em PHP em que seja lida uma palavra e ela seja apresentada com seus 
+caracteres em maiúsculo e minúsculo.
     */
     if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
@@ -35,13 +36,8 @@ caracteres dessa palavra.
 
             $v1 = $_POST['V1'];
 
-            $count = 0;
-            foreach ($v1 as $i) {
-                $count++;
-            }
+            echo strtolower($v1) . "\t" . strtoupper($v1);
 
-
-            echo "Número de caracteres = " . $count;
         } catch (Exception $e) {
             echo $e->getMessage();
         }
