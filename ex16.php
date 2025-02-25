@@ -15,12 +15,12 @@
     <form method="post" action="">
 
         <div class="mb-3">
-            <label for="V1" class="form-label">Valor 1</label>
+            <label for="V1" class="form-label">Preço</label>
             <input type="number" id="V1" name="V1" class="form-control" required="">
         </div>
 
         <div class="mb-3">
-            <label for="V2" class="form-label">Valor 2</label>
+            <label for="V2" class="form-label">Percentual de desconto</label>
             <input type="number" id="V2" name="V2" class="form-control" required="">
         </div>
 
@@ -37,7 +37,7 @@
             $v1 = $_POST['V1'];
             $v2 = $_POST['V2'];
             $v3 = $v1 - ($v1 * ($v2 / 100));
-            echo $v3;
+            echo "Preço com desconto = " . $v3;
         } catch (Exception $e) {
             echo $e->getMessage();
         }

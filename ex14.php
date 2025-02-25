@@ -14,13 +14,8 @@
     <form method="post" action="">
 
         <div class="mb-3">
-            <label for="V1" class="form-label">Valor 1</label>
+            <label for="V1" class="form-label">Kilômetros</label>
             <input type="number" id="V1" name="V1" class="form-control" required="">
-        </div>
-
-        <div class="mb-3">
-            <label for="V2" class="form-label">Valor 2</label>
-            <input type="number" id="V2" name="V2" class="form-control" required="">
         </div>
 
         <button type="submit" class="btn btn-primary">Enviar</button>
@@ -35,7 +30,7 @@
 
             $v1 = $_POST['V1'];
             $v2 = $v1 * 0.621371;
-            echo $v2;
+            echo "Milhas = " . $v2;
         } catch (Exception $e) {
             echo $e->getMessage();
         }

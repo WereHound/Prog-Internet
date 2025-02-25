@@ -14,7 +14,7 @@
     <form method="post" action="">
 
         <div class="mb-3">
-            <label for="V1" class="form-label">Valor 1</label>
+            <label for="V1" class="form-label">Celsius</label>
             <input type="number" id="V1" name="V1" class="form-control" required="">
         </div>
 

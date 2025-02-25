@@ -14,17 +14,17 @@
     <form method="post" action="">
 
         <div class="mb-3">
-            <label for="V1" class="form-label">Valor 1</label>
+            <label for="V1" class="form-label">Capital</label>
             <input type="number" id="V1" name="V1" class="form-control" required="">
         </div>
 
         <div class="mb-3">
-            <label for="V2" class="form-label">Valor 2</label>
+            <label for="V2" class="form-label">Taxa de juros</label>
             <input type="number" id="V2" name="V2" class="form-control" required="">
         </div>
 
         <div class="mb-3">
-            <label for="V3" class="form-label">Valor 3</label>
+            <label for="V3" class="form-label">Período</label>
             <input type="number" id="V3" name="V3" class="form-control" required="">
         </div>
 
@@ -42,7 +42,7 @@
             $v2 = $_POST['V2'];
             $v3 = $_POST['V3'];
             $v4 = $v1 * $v2 * $v3;
-            echo $v4;
+            echo "Juros simples = " . $v4;
         } catch (Exception $e) {
             echo $e->getMessage();
         }
