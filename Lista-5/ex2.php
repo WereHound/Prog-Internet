@@ -133,12 +133,17 @@ média das notas (do maior para o menor).
             }
 
 
-            function sorter($a, $b)
-            {
-                return strcmp($b["Valor"], $a["Valor"]);
+            $notas = [];
+
+            foreach ($array as $value) {
+                $notas[] = $value["Valor"];
             }
 
-            usort($array, "sorter");
+            sort($notas);
+
+            array_multisort($notas, SORT_DESC, $array);
+
+
 
 
             foreach ($array as $value) {

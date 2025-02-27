@@ -120,12 +120,17 @@ do produto.
                 }
 
             }
-            function sorter($a, $b)
-            {
-                return strcmp($a["Valor"]["Nome"], $b["Valor"]["Nome"]);
+            $notas = [];
+
+            foreach ($array as $value) {
+                $notas[] = $value["Valor"]["Nome"];
             }
 
-            usort($array, "sorter");
+            sort($notas);
+
+            array_multisort($notas, SORT_ASC, $array);
+
+
 
 
             foreach ($array as $value) {

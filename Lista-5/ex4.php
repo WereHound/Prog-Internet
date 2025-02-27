@@ -91,13 +91,18 @@ ordenada pelos preços após a aplicação do imposto.
                 ${"item" . $i} = ["Chave" => $_POST['Nome-' . $i], "Valor" => ($_POST['Preco-' . $i] * 1.15)];
                 $array[] = ${"item" . $i};
             }
+            
+            $notas = [];
 
-            function sorter($a, $b)
-            {
-                return strcmp($a["Valor"], $b["Valor"]);
+            foreach ($array as $value) {
+                $notas[] = $value["Valor"];
             }
 
-            usort($array, "sorter");
+            sort($notas);
+
+            array_multisort($notas, SORT_ASC, $array);
+
+
 
 
             foreach ($array as $value) {

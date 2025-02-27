@@ -101,12 +101,17 @@ baixa quantidade. Exiba a lista ordenada pelo título dos livros.
                 }
             }
 
-            function sorter($a, $b)
-            {
-                return strcmp($a["Chave"], $b["Chave"]);
+            $notas = [];
+
+            foreach ($array as $value) {
+                $notas[] = $value["Chave"];
             }
 
-            usort($array, "sorter");
+            sort($notas);
+
+            array_multisort($notas, SORT_ASC, $array);
+
+
 
 
             foreach ($array as $value) {
