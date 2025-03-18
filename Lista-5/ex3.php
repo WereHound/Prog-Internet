@@ -114,20 +114,22 @@ do produto.
                 $array[] = ${"item" . $i};
             }
 
+            $i = 0;
             foreach ($array as $value) {
                 if ($value["Valor"]["Preco"] > 100) {
-                    $value["Valor"]["Preco"] *= 0.9;
+                    $array[$i]["Valor"]["Preco"] *= 0.9;
                 }
-
+                $i++;
             }
+
             $notas = [];
 
             foreach ($array as $value) {
                 $notas[] = $value["Valor"]["Nome"];
             }
 
-            sort($notas);
-
+            //sort($notas);
+    
             array_multisort($notas, SORT_ASC, $array);
 
 

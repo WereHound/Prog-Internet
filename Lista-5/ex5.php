@@ -107,7 +107,7 @@ baixa quantidade. Exiba a lista ordenada pelo título dos livros.
                 $notas[] = $value["Chave"];
             }
 
-            sort($notas);
+            //sort($notas);
 
             array_multisort($notas, SORT_ASC, $array);
 

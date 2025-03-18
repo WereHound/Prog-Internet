@@ -139,12 +139,13 @@ média das notas (do maior para o menor).
                 $notas[] = $value["Valor"];
             }
 
-            sort($notas);
+            //sort($notas);
+
+
 
             array_multisort($notas, SORT_DESC, $array);
 
-
-
+            
 
             foreach ($array as $value) {
                 echo "Chave = " . $value["Chave"] . "\tValor = " . $value["Valor"] . "</br>";

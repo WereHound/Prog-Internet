@@ -98,7 +98,7 @@ ordenada pelos preços após a aplicação do imposto.
                 $notas[] = $value["Valor"];
             }
 
-            sort($notas);
+            //sort($notas);
 
             array_multisort($notas, SORT_ASC, $array);
 
