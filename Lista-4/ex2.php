@@ -30,13 +30,19 @@
 Crie um programa em PHP em que seja lida uma palavra e ela seja apresentada com seus 
 caracteres em maiúsculo e minúsculo.
     */
+
+    function logic($v1)
+    {
+        echo strtoupper($v1) . "\t" . strtolower($v1);
+
+    }
+
     if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
         try {
 
             $v1 = $_POST['V1'];
-
-            echo strtolower($v1) . "\t" . strtoupper($v1);
+            logic($v1);
 
         } catch (Exception $e) {
             echo $e->getMessage();

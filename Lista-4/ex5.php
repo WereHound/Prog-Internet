@@ -28,12 +28,21 @@
     /*
 Crie um programa em PHP que leia um valor e retorna a raiz quadrada desse número.
     */
+
+    function logic($v1)
+    {
+        if ($v1 >= 0)
+            echo sqrt($v1);
+        else
+            echo $v1 . " é negativo";
+    }
+
     if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
         try {
 
             $v1 = $_POST['V1'];
-            echo sqrt($v1);
+            logic($v1);
 
         } catch (Exception $e) {
             echo $e->getMessage();

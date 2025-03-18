@@ -29,19 +29,19 @@
 Crie um programa em PHP em que seja lida uma palavra e apresentado o número de 
 caracteres dessa palavra.
     */
+
+    function logic($v1)
+    {
+        echo "Número de caracteres = " . strlen($v1);
+    }
+
     if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
         try {
 
             $v1 = $_POST['V1'];
+            logic($v1);
 
-            $count = 0;
-            foreach ($v1 as $i) {
-                $count++;
-            }
-
-
-            echo "Número de caracteres = " . $count;
         } catch (Exception $e) {
             echo $e->getMessage();
         }

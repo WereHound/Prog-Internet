@@ -39,6 +39,16 @@
 Crie um programa em PHP que leia três valores: dia, mês e ano. Verifique se a data informada 
 é válida e apresente a data em formato dd/mm/YYYY.
     */
+
+    function logic($v1, $v2, $v3)
+    {
+        if (checkdate($v2, $v1, $v3)) {
+            echo "Data informada é válida\t" . $v1 . "/" . $v2 . "/" . $v3;
+        } else {
+            echo "Data invalida";
+        }
+    }
+
     if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
         try {
@@ -46,12 +56,7 @@ Crie um programa em PHP que leia três valores: dia, mês e ano. Verifique se a 
             $v1 = $_POST['V1'];
             $v2 = $_POST['V2'];
             $v3 = $_POST['V3'];
-
-            if (checkdate($v2, $v1, $v3)) {
-                echo "Data informada é válida\t" . $v1 . "/" . $v2 . "/" . $v3;
-            } else {
-                echo "Data invalida";
-            }
+            logic($v1, $v2, $v3);
 
         } catch (Exception $e) {
             echo $e->getMessage();

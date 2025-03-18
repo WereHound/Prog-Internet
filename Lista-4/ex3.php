@@ -34,25 +34,30 @@
 Crie um programa em PHP em que sejam lidas duas palavras, e verifique se a segunda palavra 
 está contida na primeira.
     */
+
+    function logic($v1, $v2)
+    {
+        $counter = 0;
+        for ($i = 0; $i < strlen($v1); $i++) {
+            if ($v1[$i] == $v2[$counter] && $counter < strlen($v2)) {
+                $counter++;
+            } else {
+                $counter = 0;
+            }
+            if ($counter == strlen($v2)) {
+                echo "A segunda palavra está contida na primeira.";
+                return;
+            }
+        }
+    }
+
     if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
         try {
 
             $v1 = $_POST['V1'];
-
             $v2 = $_POST['V2'];
-
-            $counter = 0;
-            foreach ($v1 as $i) {
-                if ($i == $v2[$counter]) {
-                    $counter++;
-                } else {
-                    $counter = 0;
-                }
-                if ($counter == strlen($v2)) {
-                    echo "A segunda palavra está contida na primeira.";
-                }
-            }
+            logic($v1, $v2);
 
         } catch (Exception $e) {
             echo $e->getMessage();

@@ -29,15 +29,20 @@
 Crie um programa em PHP que recebe um número de ponto flutuante e retorna o número 
 arredondado.
     */
+
+    function logic($v1)
+    {
+        round($v1);
+        echo "Valor = " . round($v1);
+    }
+    
     if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
         try {
 
             $v1 = $_POST['V1'];
-            round($v1);
+            logic($v1);
 
-
-            echo "Valor = " . round($v1);
         } catch (Exception $e) {
             echo $e->getMessage();
         }

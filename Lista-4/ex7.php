@@ -34,18 +34,23 @@
 Crie um programa que receba o valor de duas datas no formato dd/mm/YYYY e que apresente 
 a diferença de dias entre as duas datas.
     */
+    
+    function logic($v1, $v2)
+    {
+        $date1 = date_create($v1);
+        $date2 = date_create($v2);
+        $diff = date_diff($date1, $date2);
+        echo $diff->format('Diferença de %a dias');
+    }
+
     if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
         try {
 
             $v1 = $_POST['V1'];
-            $date1 = date_create($v1);
             $v2 = $_POST['V2'];
-            $date2 = date_create($v2);
+            logic($v1, $v2);
 
-            $diff = date_diff($date1, $date2);
-
-            echo $diff->format('Diferença de %a dias');
         } catch (Exception $e) {
             echo $e->getMessage();
         }
