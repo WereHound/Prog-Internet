@@ -13,20 +13,21 @@
 
 
     <?php
-    require_once('databaseInterface.php');
+    require_once('database.php');
     if ($_SERVER["REQUEST_METHOD"] == "POST") {
         try {
 
-            $valid_username = "admin";
-            $valid_password = "123";
-
             $username = $_POST['username'];
             $password = $_POST['password'];
+            
+            $stmt = $pdo->prepare("SELECT * FROM users WHERE Username = ?");
+            $stmt->execute([$username]);
+            $user = $stmt->fetch(PDO::FETCH_ASSOC);
 
-            if ($username === $valid_username && $password === $valid_password) {
+            if ($user && password_verify($password,$user["Password"])) {
                 session_start();
-                $_SESSION['username'] = $username;
-                $_SESSION['password'] = $password;
+                $_SESSION['username'] = $user["Username"];
+                
                 $_SESSION['access'] = true;
                 header('location: main.php');
             } else {
@@ -69,11 +70,17 @@
                             </div>
                             <button type="submit" class="btn btn-primary w-100">Login</button>
                         </form>
+                        <div class="row">
+                            <div class="col">
+                                <a href="newUser.php">Register</a>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
     </div>
+
 
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
