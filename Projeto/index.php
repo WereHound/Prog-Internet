@@ -13,6 +13,7 @@
 
 
     <?php
+    require_once('databaseInterface.php');
     if ($_SERVER["REQUEST_METHOD"] == "POST") {
         try {
 
