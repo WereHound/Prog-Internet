@@ -32,19 +32,16 @@ if (!$_SESSION["access"]) {
                 <ul class="navbar-nav me-auto mb-2 mb-lg-0">
 
                     <li class="nav-item">
-                        <a class="nav-link" href="#">Link</a>
+                        <a class="nav-link" href="clientes.php">Clientes</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#">Link</a>
+                        <a class="nav-link" href="servicos.php">Servicos</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#">Link</a>
+                        <a class="nav-link" href="veiculos.php">Veiculos</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#">Link</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#">Link</a>
+                        <a class="nav-link" href="ordens.php">Ordens</a>
                     </li>
 
                     <li class="nav-item btn btn-danger">
@@ -53,7 +50,7 @@ if (!$_SESSION["access"]) {
 
                 </ul>
                 <form class="d-flex" role="search">
-                    <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
+                    <input class="form-control me-2" type="search" placeholder="Nao faz nada" aria-label="Search">
                     <button class="btn btn-outline-success" type="submit">Search</button>
                 </form>
             </div>

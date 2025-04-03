@@ -3,13 +3,25 @@
 require_once("database.php");
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     try {
+
         $user = $_POST['User'];
         $password = password_hash($_POST['Password'], PASSWORD_BCRYPT);
         $email = $_POST['Email'];
-        $stmt = $pdo->prepare("INSERT INTO users (Username, Password, Email) VALUES (?, ?, ?)");
-        if ($stmt->execute([$user, $password, $email])) {
-            header("location: index.php");
+
+        $stmt = $pdo->prepare("SELECT COUNT(*) FROM users WHERE Username = ?");
+        $stmt->execute([$user]);
+        $userExists = $stmt->fetchColumn();
+
+        if ($userExists > 0) {
+            echo "<div class='alert alert-danger'>Erro: Username ja existe!</div>";
+        } else {
+            $stmt = $pdo->prepare("INSERT INTO users (Username, Password, Email) VALUES (?, ?, ?)");
+            if ($stmt->execute([$user, $password, $email])) {
+                header("location: index.php");
+                exit;
+            }
         }
+
     } catch (Exception $e) {
         echo "Error: " . $e->getMessage();
     }
@@ -29,23 +41,23 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
 <body>
     <main class="container">
-        <h1>Register</h1>
+        <h1>Registrar</h1>
 
         <form method="post" action="" class="m-5">
 
             <div class="row">
                 <div class="col">
-                    <label for="User">User</label>
+                    <label for="User">Usuario</label>
                     <input type="text" id="User" name="User" class="form-control" placeholder="" required>
                 </div>
                 <div class="col">
-                    <label for="Password">Password</label>
+                    <label for="Password">Senha</label>
                     <input type="password" id="Password" name="Password" class="form-control" placeholder="" required>
                 </div>
             </div>
             <div class="row">
                 <div class="col">
-                    <label for="Email">Email (Optional)</label>
+                    <label for="Email">Email (Opcional)</label>
                     <input type="text" id="Email" name="Email" class="form-control" placeholder="">
                 </div>
             </div>

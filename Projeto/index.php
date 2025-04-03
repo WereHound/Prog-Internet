@@ -19,15 +19,15 @@
 
             $username = $_POST['username'];
             $password = $_POST['password'];
-            
+
             $stmt = $pdo->prepare("SELECT * FROM users WHERE Username = ?");
             $stmt->execute([$username]);
             $user = $stmt->fetch(PDO::FETCH_ASSOC);
-
+            
             if ($user && password_verify($password,$user["Password"])) {
                 session_start();
                 $_SESSION['username'] = $user["Username"];
-                
+
                 $_SESSION['access'] = true;
                 header('location: main.php');
             } else {
@@ -61,18 +61,18 @@
                         <h5 class="card-title text-center">Login</h5>
                         <form action="" method="POST">
                             <div class="mb-3">
-                                <label for="username" class="form-label">Username</label>
+                                <label for="username" class="form-label">Usuario</label>
                                 <input type="text" class="form-control" id="username" name="username" required>
                             </div>
                             <div class="mb-3">
-                                <label for="password" class="form-label">Password</label>
+                                <label for="password" class="form-label">Senha</label>
                                 <input type="password" class="form-control" id="password" name="password" required>
                             </div>
                             <button type="submit" class="btn btn-primary w-100">Login</button>
                         </form>
                         <div class="row">
                             <div class="col">
-                                <a href="newUser.php">Register</a>
+                                <a href="newUser.php">Registrar</a>
                             </div>
                         </div>
                     </div>
