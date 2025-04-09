@@ -4,8 +4,8 @@ declare(strict_types=1);
 
 
 $domain = "mysql:host=localhost;dbname=projectphp";
-$user = "root";
-$password = "";
+$user = "projetophp";
+$password = "1234554321";
 
 try {
     $pdo = new PDO($domain, $user, $password);
