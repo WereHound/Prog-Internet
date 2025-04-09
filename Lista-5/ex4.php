@@ -106,7 +106,7 @@ ordenada pelos preços após a aplicação do imposto.
 
 
             foreach ($array as $value) {
-                echo "Chave = " . $value["Chave"] . "\tPreço = " . $value["Valor"] . "</br>";
+                echo "Chave = " . $value["Chave"] . "\tPreço = " . $value["Valor"] . "\n";
             }
 
 

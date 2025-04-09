@@ -112,7 +112,7 @@ contato. Exiba a lista ordenada pelos nomes dos contatos.
 
 
             foreach ($array as $value) {
-                echo "Chave = " . $value["Chave"] . "\tValor = " . $value["Valor"] . "</br>";
+                echo "Chave = " . $value["Chave"] . "\tValor = " . $value["Valor"] . "\n";
             }
 
 

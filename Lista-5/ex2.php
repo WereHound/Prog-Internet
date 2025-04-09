@@ -148,7 +148,7 @@ média das notas (do maior para o menor).
             
 
             foreach ($array as $value) {
-                echo "Chave = " . $value["Chave"] . "\tValor = " . $value["Valor"] . "</br>";
+                echo "Chave = " . $value["Chave"] . "\tValor = " . $value["Valor"] . "\n";
             }
 
         } catch (Exception $e) {

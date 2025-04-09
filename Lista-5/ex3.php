@@ -136,7 +136,7 @@ do produto.
 
 
             foreach ($array as $value) {
-                echo "Chave = " . $value["Chave"] . "\tNome = " . $value["Valor"]["Nome"] . "\tPreço = " . $value["Valor"]["Preco"] . "</br>";
+                echo "Chave = " . $value["Chave"] . "\tNome = " . $value["Valor"]["Nome"] . "\tPreço = " . $value["Valor"]["Preco"] . "\n";
             }
 
         } catch (Exception $e) {

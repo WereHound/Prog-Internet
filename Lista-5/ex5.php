@@ -94,10 +94,10 @@ baixa quantidade. Exiba a lista ordenada pelo título dos livros.
                 $array[] = ${"item" . $i};
             }
 
-            echo "Livros com baixa quantidade: </br>";
+            echo "Livros com baixa quantidade: \n";
             foreach ($array as $value) {
                 if ($value["Valor"] < 5) {
-                    echo $value["Chave"] . "</br>";
+                    echo $value["Chave"] . "\n";
                 }
             }
 
@@ -115,7 +115,7 @@ baixa quantidade. Exiba a lista ordenada pelo título dos livros.
 
 
             foreach ($array as $value) {
-                echo "Chave = " . $value["Chave"] . "\tQuantidade em estoque = " . $value["Valor"] . "</br>";
+                echo "Chave = " . $value["Chave"] . "\tQuantidade em estoque = " . $value["Valor"] . "\n";
             }
 
 

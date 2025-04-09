@@ -58,7 +58,7 @@
 
             $seconds = round($seconds, 2);
 
-            echo "</br>Hours: " . $finalHours . "\tMinutes: " . $finalMinutes . "\tSeconds: " . $seconds;
+            echo "\nHours: " . $finalHours . "\tMinutes: " . $finalMinutes . "\tSeconds: " . $seconds;
 
 
         } catch (Exception $e) {
