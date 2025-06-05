@@ -9,7 +9,29 @@
         integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
 </head>
 
-<body>
+<body style="position: relative; min-height: 100vh; margin: 0;">
+    <div style="
+        background-image: url('https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS7QWM0g2b9zXVFVz7GGIbRFbHaCpBm6Hdnjg&s');
+        background-size: cover;
+        background-repeat: no-repeat;
+        background-position: center;
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        z-index: -2;
+    "></div>
+
+    <div style="
+        background-color: rgba(255, 255, 255, 0.8); 
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        z-index: -1;
+    "></div>
 
 
     <?php
@@ -72,7 +94,7 @@
                         </form>
                         <div class="row">
                             <div class="col">
-                                <a href="newUser.php">Registrar</a>
+                                <a class="btn btn-secondary w-100" href="newUser.php">Registrar</a>
                             </div>
                         </div>
                     </div>

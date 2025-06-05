@@ -1,6 +1,5 @@
 <?php
 require_once("header.php");
-echo "<h2>User: " . $_SESSION["username"] . " </h2>";
 ?>
 
 <?php
@@ -21,7 +20,7 @@ try {
 <div class="container mt-5">
     <h2 class="mb-4">Lista de Clientes</h2>
     <a href="newClientes.php" class="btn btn-success mb-3">Cadastrar Cliente</a>
-    <table class="table table-bordered table-striped">
+    <table class="table table-bordered table-striped" id="myTable">
         <thead class="table-dark">
             <tr>
                 <th>CPF</th>

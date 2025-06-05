@@ -1,6 +1,5 @@
 <?php
 require_once("header.php");
-echo "<h2>User: " . $_SESSION["username"] . " </h2>";
 ?>
 
 <?php
@@ -77,15 +76,15 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
             <div class="mb-3">
                 <label for="Data_de_Entrega_do_Veiculo" class="form-label">Data_de_Entrega_do_Veiculo</label>
-                <input type="text" id="Data_de_Entrega_do_Veiculo" name="Data_de_Entrega_do_Veiculo"
-                    class="form-control" placeholder="YYYY-MM-DD HH-MM-SS" required>
+                <input type="date" id="Data_de_Entrega_do_Veiculo" name="Data_de_Entrega_do_Veiculo"
+                    class="form-control" placeholder="" required>
             </div>
 
             <div class="mb-3">
                 <label for="Data_de_Devolucao_do_Veiculo" class="form-label">Data_de_Devolucao_do_Veiculo
                     (Optional)</label>
-                <input type="text" id="Data_de_Devolucao_do_Veiculo" name="Data_de_Devolucao_do_Veiculo"
-                    class="form-control" placeholder="YYYY-MM-DD HH-MM-SS" required>
+                <input type="date" id="Data_de_Devolucao_do_Veiculo" name="Data_de_Devolucao_do_Veiculo"
+                    class="form-control" placeholder="" required>
             </div>
 
             <div class="mb-3">
