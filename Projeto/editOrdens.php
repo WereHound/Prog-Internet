@@ -10,7 +10,7 @@ try {
     $stmt = $pdo->prepare("SELECT idServico FROM servico");
     $stmt->execute();
 
-    $servicosidServico = $stmt->fetchAll(PDO::FETCH_ASSOC);
+    $idServicoList = $stmt->fetchAll(PDO::FETCH_ASSOC);
 } catch (Exception $e) {
     echo "Error: " . $e->getMessage();
 }
@@ -20,7 +20,7 @@ try {
     $stmt = $pdo->prepare("SELECT Placa FROM veiculo");
     $stmt->execute();
 
-    $veiculosPlaca = $stmt->fetchAll(PDO::FETCH_ASSOC);
+    $PlacaList = $stmt->fetchAll(PDO::FETCH_ASSOC);
 } catch (Exception $e) {
     echo "Error: " . $e->getMessage();
 }
@@ -35,15 +35,15 @@ if ($_SERVER["REQUEST_METHOD"] == "GET" && isset($_GET["idOrdem"])) {
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $idOrdem = $_POST["idOrdem"];
-    $Data_de_Entrega_do_Veiculo = $_POST["Data_de_Entrega_do_Veiculo"];
+    $Data_de_Entrada_do_Veiculo = $_POST["Data_de_Entrada_do_Veiculo"];
     $Data_de_Devolucao_do_Veiculo = $_POST["Data_de_Devolucao_do_Veiculo"];
-    $Servico_idServico = $_POST["Servico_idServico"];
-    $Veiculo_Placa = $_POST["Veiculo_Placa"];
+    $idServico = $_POST["idServico"];
+    $Placa = $_POST["Placa"];
 
     try {
 
-        $stmt = $pdo->prepare("UPDATE `ordem de servico` SET Data_de_Entrega_do_Veiculo = ?, Data_de_Devolucao_do_Veiculo = ?, Servico_idServico = ?, Veiculo_Placa = ?  WHERE idOrdem = ?");
-        $stmt->execute([$Data_de_Entrega_do_Veiculo, $Data_de_Devolucao_do_Veiculo, $Servico_idServico, $Veiculo_Placa, $idOrdem]);
+        $stmt = $pdo->prepare("UPDATE `ordem de servico` SET Data_de_Entrada_do_Veiculo = ?, Data_de_Devolucao_do_Veiculo = ?, idServico = ?, Placa = ?  WHERE idOrdem = ?");
+        $stmt->execute([$Data_de_Entrada_do_Veiculo, $Data_de_Devolucao_do_Veiculo, $idServico, $Placa, $idOrdem]);
 
         header("Location: ordens.php");
         exit;
@@ -70,25 +70,25 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             <input type="hidden" name="idOrdem" value="<?php echo htmlspecialchars($idOrdem); ?>">
 
             <div class="mb-3">
-                <label for="Data_de_Entrega_do_Veiculo" class="form-label">Data_de_Entrega_do_Veiculo</label>
-                <input type="date" class="form-control" id="Data_de_Entrega_do_Veiculo" name="Data_de_Entrega_do_Veiculo"
-                    value="<?php echo htmlspecialchars($ordem['Data_de_Entrega_do_Veiculo']); ?>" required>
+                <label for="Data_de_Entrada_do_Veiculo" class="form-label">Data de Entrada do Veiculo</label>
+                <input type="date" class="form-control" id="Data_de_Entrada_do_Veiculo" name="Data_de_Entrada_do_Veiculo"
+                    value="<?php echo htmlspecialchars($ordem['Data_de_Entrada_do_Veiculo']); ?>" required>
             </div>
 
             <div class="mb-3">
-                <label for="Data_de_Devolucao_do_Veiculo" class="form-label">Data_de_Devolucao_do_Veiculo</label>
+                <label for="Data_de_Devolucao_do_Veiculo" class="form-label">Data de Devolucao do Veiculo</label>
                 <input type="date" class="form-control" id="Data_de_Devolucao_do_Veiculo" name="Data_de_Devolucao_do_Veiculo"
-                    value="<?php echo htmlspecialchars($ordem['Data_de_Devolucao_do_Veiculo']); ?>">
+                    value="<?php echo htmlspecialchars($ordem['Data_de_Devolucao_do_Veiculo']); ?>" required>
             </div>
 
             <div class="mb-3">
 
-                <label for="Servico_idServico" class="form-label">Servico_idServico</label>
-                <select name="Servico_idServico">
-                    <?php foreach ($servicosidServico as $idServico): ?>
+                <label for="idServico" class="form-label">idServico</label>
+                <select name="idServico">
+                    <?php foreach ($idServicoList as $idServicoItem): ?>
 
-                        <option <?php if($idServico["idServico"] == $ordem["Servico_idServico"]) echo "selected";?> value="<?php echo htmlspecialchars($idServico['idServico']); ?>">
-                            <?php echo htmlspecialchars($idServico['idServico']); ?>
+                        <option <?php if($idServicoItem["idServico"] == $ordem["idServico"]) echo "selected";?> value="<?php echo htmlspecialchars($idServicoItem['idServico']); ?>">
+                            <?php echo htmlspecialchars($idServicoItem['idServico']); ?>
                         </option>
 
                     <?php endforeach; ?>
@@ -98,12 +98,12 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             
             <div class="mb-3">
 
-                <label for="Veiculo_Placa" class="form-label">Veiculo_Placa</label>
-                <select name="Veiculo_Placa">
-                    <?php foreach ($veiculosPlaca as $Placa): ?>
+                <label for="Placa" class="form-label">Placa</label>
+                <select name="Placa">
+                    <?php foreach ($PlacaList as $PlacaItem): ?>
 
-                        <option <?php if($Placa["Placa"] == $ordem["Veiculo_Placa"]) echo "selected";?> value="<?php echo htmlspecialchars($Placa['Placa']); ?>">
-                            <?php echo htmlspecialchars($Placa['Placa']); ?>
+                        <option <?php if($PlacaItem["Placa"] == $ordem["Placa"]) echo "selected";?> value="<?php echo htmlspecialchars($PlacaItem['Placa']); ?>">
+                            <?php echo htmlspecialchars($PlacaItem['Placa']); ?>
                         </option>
 
                     <?php endforeach; ?>

@@ -11,7 +11,7 @@ try {
     $stmt = $pdo->prepare("SELECT CPF FROM cliente");
     $stmt->execute();
 
-    $clientesCPF = $stmt->fetchAll(PDO::FETCH_ASSOC);
+    $CPFList = $stmt->fetchAll(PDO::FETCH_ASSOC);
 } catch (Exception $e) {
     echo "Error: " . $e->getMessage();
 }
@@ -30,12 +30,12 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $Marca = $_POST["Marca"];
     $Modelo = $_POST["Modelo"];
     $Cor = $_POST["Cor"];
-    $Cliente_CPF = $_POST["Cliente_CPF"];
+    $CPF = $_POST["CPF"];
 
     try {
 
-        $stmt = $pdo->prepare("UPDATE veiculo SET Marca = ?, Modelo = ?, Cor = ?, Cliente_CPF = ? WHERE Placa = ?");
-        $stmt->execute([$Marca, $Modelo, $Cor, $Cliente_CPF, $Placa]);
+        $stmt = $pdo->prepare("UPDATE veiculo SET Marca = ?, Modelo = ?, Cor = ?, CPF = ? WHERE Placa = ?");
+        $stmt->execute([$Marca, $Modelo, $Cor, $CPF, $Placa]);
 
         header("Location: veiculos.php");
         exit;
@@ -72,23 +72,23 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             <div class="mb-3">
                 <label for="Modelo" class="form-label">Modelo</label>
                 <input type="text" class="form-control" id="Modelo" name="Modelo"
-                    value="<?php echo htmlspecialchars($veiculo['Modelo']); ?>">
+                    value="<?php echo htmlspecialchars($veiculo['Modelo']); ?>" required>
             </div>
 
             <div class="mb-3">
                 <label for="Cor" class="form-label">Cor</label>
                 <input type="text" class="form-control" id="Cor" name="Cor"
-                    value="<?php echo htmlspecialchars($veiculo['Cor']); ?>">
+                    value="<?php echo htmlspecialchars($veiculo['Cor']); ?>" required>
             </div>
 
             <div class="mb-3">
 
-                <label for="Cliente_CPF" class="form-label">Cliente_CPF</label>
-                <select name="Cliente_CPF">
-                    <?php foreach ($clientesCPF as $CPF): ?>
+                <label for="CPF" class="form-label">CPF</label>
+                <select name="CPF">
+                    <?php foreach ($CPFList as $CPFItem): ?>
 
-                        <option <?php if($CPF["CPF"] == $veiculo["Cliente_CPF"]) echo "selected";?> value="<?php echo htmlspecialchars($CPF['CPF']); ?>">
-                            <?php echo htmlspecialchars($CPF['CPF']); ?></option>
+                        <option <?php if($CPFItem["CPF"] == $veiculo["CPF"]) echo "selected";?> value="<?php echo htmlspecialchars($CPFItem['CPF']); ?>">
+                            <?php echo htmlspecialchars($CPFItem['CPF']); ?></option>
 
                     <?php endforeach; ?>
                 </select>

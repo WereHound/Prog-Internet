@@ -7,7 +7,7 @@ require_once("database.php");
 
 try {
 
-    $stmt = $pdo->prepare("SELECT Placa, Marca, Modelo, Cor, Cliente_CPF FROM veiculo");
+    $stmt = $pdo->prepare("SELECT Placa, Marca, Modelo, Cor, CPF FROM veiculo");
     $stmt->execute();
 
     $veiculos = $stmt->fetchAll(PDO::FETCH_ASSOC);
@@ -27,7 +27,7 @@ try {
                 <th>Marca</th>
                 <th>Modelo</th>
                 <th>Cor</th>
-                <th>Cliente_CPF</th>
+                <th>CPF</th>
                 <th>Actions</th>
             </tr>
         </thead>
@@ -39,7 +39,7 @@ try {
                         <td><?php echo htmlspecialchars($veiculo['Marca']); ?></td>
                         <td><?php echo htmlspecialchars($veiculo['Modelo']); ?></td>
                         <td><?php echo htmlspecialchars($veiculo['Cor']); ?></td>
-                        <td><?php echo htmlspecialchars($veiculo['Cliente_CPF']); ?></td>
+                        <td><?php echo htmlspecialchars($veiculo['CPF']); ?></td>
                         <td>
 
                             <a href="editVeiculos.php?Placa=<?php echo $veiculo['Placa']; ?>"

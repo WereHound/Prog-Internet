@@ -10,7 +10,7 @@ try {
     $stmt = $pdo->prepare("SELECT idServico FROM servico");
     $stmt->execute();
 
-    $servicosidServico = $stmt->fetchAll(PDO::FETCH_ASSOC);
+    $idServicoList = $stmt->fetchAll(PDO::FETCH_ASSOC);
 } catch (Exception $e) {
     echo "Error: " . $e->getMessage();
 }
@@ -20,33 +20,25 @@ try {
     $stmt = $pdo->prepare("SELECT Placa FROM veiculo");
     $stmt->execute();
 
-    $veiculosPlaca = $stmt->fetchAll(PDO::FETCH_ASSOC);
+    $PlacaList = $stmt->fetchAll(PDO::FETCH_ASSOC);
 } catch (Exception $e) {
     echo "Error: " . $e->getMessage();
 }
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     try {
-        $idOrdem = $_POST['idOrdem'];
-        $Data_de_Entrega_do_Veiculo = $_POST['Data_de_Entrega_do_Veiculo'];
+        
+        $Data_de_Entrada_do_Veiculo = $_POST['Data_de_Entrada_do_Veiculo'];
         $Data_de_Devolucao_do_Veiculo = $_POST['Data_de_Devolucao_do_Veiculo'];
-        $Servico_idServico = $_POST['Servico_idServico'];
-        $Veiculo_Placa = $_POST['Veiculo_Placa'];
+        $idServico = $_POST['idServico'];
+        $Placa = $_POST['Placa'];
 
-        $stmt = $pdo->prepare("SELECT COUNT(*) FROM `ordem de servico` WHERE idOrdem = ?");
-        $stmt->execute([$idOrdem]);
-        $idOrdemExists = $stmt->fetchColumn();
-
-        if ($idOrdemExists > 0) {
-            echo "<div class='alert alert-danger'>Erro: idOrdem ja existe!</div>";
-        } else {
-
-            $stmt = $pdo->prepare("INSERT INTO `ordem de servico` (idOrdem, Data_de_Entrega_do_Veiculo, Data_de_Devolucao_do_Veiculo, Servico_idServico, Veiculo_Placa) VALUES (?, ?, ?, ?, ?)");
-            if ($stmt->execute([$idOrdem, $Data_de_Entrega_do_Veiculo, $Data_de_Devolucao_do_Veiculo, $Servico_idServico, $Veiculo_Placa])) {
+            $stmt = $pdo->prepare("INSERT INTO `ordem de servico` (Data_de_Entrada_do_Veiculo, Data_de_Devolucao_do_Veiculo, idServico, Placa) VALUES (?, ?, ?, ?)");
+            if ($stmt->execute([$Data_de_Entrada_do_Veiculo, $Data_de_Devolucao_do_Veiculo, $idServico, $Placa])) {
                 header("Location: ordens.php");
                 exit;
             }
-        }
+        
     } catch (Exception $e) {
         echo "Error: " . $e->getMessage();
     }
@@ -69,32 +61,28 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         <h2>Cadastrar Ordem de Servico</h2>
 
         <form method="post" action="">
-            <div class="mb-3">
-                <label for="idOrdem" class="form-label">idOrdem</label>
-                <input type="text" id="idOrdem" name="idOrdem" class="form-control" placeholder="0000-00" required>
-            </div>
 
             <div class="mb-3">
-                <label for="Data_de_Entrega_do_Veiculo" class="form-label">Data_de_Entrega_do_Veiculo</label>
-                <input type="date" id="Data_de_Entrega_do_Veiculo" name="Data_de_Entrega_do_Veiculo"
+                <label for="Data_de_Entrada_do_Veiculo" class="form-label">Data de Entrada do Veiculo</label>
+                <input type="date" id="Data_de_Entrada_do_Veiculo" name="Data_de_Entrada_do_Veiculo"
                     class="form-control" placeholder="" required>
             </div>
 
             <div class="mb-3">
-                <label for="Data_de_Devolucao_do_Veiculo" class="form-label">Data_de_Devolucao_do_Veiculo
+                <label for="Data_de_Devolucao_do_Veiculo" class="form-label">Data de Devolucao do Veiculo
                     (Optional)</label>
                 <input type="date" id="Data_de_Devolucao_do_Veiculo" name="Data_de_Devolucao_do_Veiculo"
-                    class="form-control" placeholder="" required>
+                    class="form-control" placeholder="">
             </div>
 
             <div class="mb-3">
 
-                <label for="Servico_idServico" class="form-label">Servico_idServico</label>
-                <select name="Servico_idServico">
-                    <?php foreach ($servicosidServico as $idServico): ?>
+                <label for="idServico" class="form-label">idServico</label>
+                <select name="idServico">
+                    <?php foreach ($idServicoList as $idServicoItem): ?>
 
-                        <option value="<?php echo htmlspecialchars($idServico['idServico']); ?>">
-                            <?php echo htmlspecialchars($idServico['idServico']); ?>
+                        <option value="<?php echo htmlspecialchars($idServicoItem['idServico']); ?>">
+                            <?php echo htmlspecialchars($idServicoItem['idServico']); ?>
                         </option>
 
                     <?php endforeach; ?>
@@ -104,12 +92,12 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
             <div class="mb-3">
 
-                <label for="Veiculo_Placa" class="form-label">Veiculo_Placa</label>
-                <select name="Veiculo_Placa">
-                    <?php foreach ($veiculosPlaca as $Placa): ?>
+                <label for="Placa" class="form-label">Placa</label>
+                <select name="Placa">
+                    <?php foreach ($PlacaList as $PlacaItem): ?>
 
-                        <option value="<?php echo htmlspecialchars($Placa['Placa']); ?>">
-                            <?php echo htmlspecialchars($Placa['Placa']); ?>
+                        <option value="<?php echo htmlspecialchars($PlacaItem['Placa']); ?>">
+                            <?php echo htmlspecialchars($PlacaItem['Placa']); ?>
                         </option>
 
                     <?php endforeach; ?>

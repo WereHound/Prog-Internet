@@ -70,10 +70,10 @@ if (!$_SESSION["access"]) {
                         <a class="nav-link" href="ordens.php">Ordens</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="dashboard.php">Dashboard</a>
+                        <a class="nav-link" href="fotos.php">Fotos</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="fotos.php">fotos</a>
+                        <a class="nav-link" href="dashboard.php">Dashboard</a>
                     </li>
 
                 </ul>

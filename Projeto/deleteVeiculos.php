@@ -12,7 +12,7 @@ require_once("database.php");
 if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST["Placa"])) {
     $Placa = $_POST["Placa"];
 
-    $stmt = $pdo->prepare("SELECT COUNT(*) FROM `ordem de servico` WHERE Veiculo_Placa = ?");
+    $stmt = $pdo->prepare("SELECT COUNT(*) FROM `ordem de servico` WHERE Placa = ?");
     $stmt->execute([$Placa]);
     $veiculoCount = $stmt->fetchColumn();
 

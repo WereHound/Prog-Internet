@@ -50,7 +50,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             <div class="mb-3">
                 <label for="Nome" class="form-label">Nome</label>
                 <input type="text" class="form-control" id="Nome" name="Nome"
-                    value="<?php echo htmlspecialchars($cliente['Nome']); ?>" required>
+                    value="<?php echo htmlspecialchars($cliente['Nome']); ?>">
             </div>
 
             <div class="mb-3">

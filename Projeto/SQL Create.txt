@@ -1,0 +1,123 @@
+-- MySQL Workbench Forward Engineering
+
+SET @OLD_UNIQUE_CHECKS=@@UNIQUE_CHECKS, UNIQUE_CHECKS=0;
+SET @OLD_FOREIGN_KEY_CHECKS=@@FOREIGN_KEY_CHECKS, FOREIGN_KEY_CHECKS=0;
+SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='ONLY_FULL_GROUP_BY,STRICT_TRANS_TABLES,NO_ZERO_IN_DATE,NO_ZERO_DATE,ERROR_FOR_DIVISION_BY_ZERO,NO_ENGINE_SUBSTITUTION';
+
+-- -----------------------------------------------------
+-- Schema mydb
+-- -----------------------------------------------------
+-- -----------------------------------------------------
+-- Schema projectphp
+-- -----------------------------------------------------
+
+-- -----------------------------------------------------
+-- Schema projectphp
+-- -----------------------------------------------------
+CREATE SCHEMA IF NOT EXISTS `projectphp` DEFAULT CHARACTER SET utf8 ;
+USE `projectphp` ;
+
+-- -----------------------------------------------------
+-- Table `projectphp`.`cliente`
+-- -----------------------------------------------------
+CREATE TABLE IF NOT EXISTS `projectphp`.`cliente` (
+  `CPF` VARCHAR(45) NOT NULL,
+  `Nome` VARCHAR(45) NULL DEFAULT NULL,
+  `Telefone` VARCHAR(45) NULL DEFAULT NULL,
+  PRIMARY KEY (`CPF`))
+ENGINE = InnoDB
+DEFAULT CHARACTER SET = utf8;
+
+
+-- -----------------------------------------------------
+-- Table `projectphp`.`veiculo`
+-- -----------------------------------------------------
+CREATE TABLE IF NOT EXISTS `projectphp`.`veiculo` (
+  `Placa` VARCHAR(45) NOT NULL,
+  `Marca` VARCHAR(45) NOT NULL,
+  `Modelo` VARCHAR(45) NOT NULL,
+  `Cor` VARCHAR(45) NOT NULL,
+  `CPF` VARCHAR(45) NOT NULL,
+  PRIMARY KEY (`Placa`),
+  INDEX `fk_veiculo_cliente1_idx` (`CPF` ASC) VISIBLE,
+  CONSTRAINT `fk_veiculo_cliente1`
+    FOREIGN KEY (`CPF`)
+    REFERENCES `projectphp`.`cliente` (`CPF`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION)
+ENGINE = InnoDB
+DEFAULT CHARACTER SET = utf8;
+
+
+-- -----------------------------------------------------
+-- Table `projectphp`.`foto`
+-- -----------------------------------------------------
+CREATE TABLE IF NOT EXISTS `projectphp`.`foto` (
+  `idFoto` INT(11) NOT NULL AUTO_INCREMENT,
+  `Nome_Da_Foto` VARCHAR(45) NOT NULL,
+  `Caminho_Da_Foto` VARCHAR(100) NOT NULL,
+  `Placa` VARCHAR(45) NOT NULL,
+  PRIMARY KEY (`idFoto`),
+  INDEX `fk_foto_veiculo1_idx` (`Placa` ASC) VISIBLE,
+  CONSTRAINT `fk_foto_veiculo1`
+    FOREIGN KEY (`Placa`)
+    REFERENCES `projectphp`.`veiculo` (`Placa`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION)
+ENGINE = InnoDB
+DEFAULT CHARACTER SET = utf8;
+
+
+-- -----------------------------------------------------
+-- Table `projectphp`.`servico`
+-- -----------------------------------------------------
+CREATE TABLE IF NOT EXISTS `projectphp`.`servico` (
+  `idServico` INT(11) NOT NULL AUTO_INCREMENT,
+  `Servico` VARCHAR(45) NOT NULL,
+  `Descricao` TEXT NULL DEFAULT NULL,
+  PRIMARY KEY (`idServico`))
+ENGINE = InnoDB
+DEFAULT CHARACTER SET = utf8;
+
+
+-- -----------------------------------------------------
+-- Table `projectphp`.`ordem de servico`
+-- -----------------------------------------------------
+CREATE TABLE IF NOT EXISTS `projectphp`.`ordem de servico` (
+  `idOrdem` INT(11) NOT NULL AUTO_INCREMENT,
+  `Data_de_Entrada_do_Veiculo` DATE NOT NULL,
+  `Data_de_Devolucao_do_Veiculo` DATE NULL DEFAULT NULL,
+  `idServico` INT(11) NOT NULL,
+  `Placa` VARCHAR(45) NOT NULL,
+  PRIMARY KEY (`idOrdem`),
+  INDEX `fk_ordem de servico_servico1_idx` (`idServico` ASC) VISIBLE,
+  INDEX `fk_ordem de servico_veiculo1_idx` (`Placa` ASC) VISIBLE,
+  CONSTRAINT `fk_ordem de servico_servico1`
+    FOREIGN KEY (`idServico`)
+    REFERENCES `projectphp`.`servico` (`idServico`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION,
+  CONSTRAINT `fk_ordem de servico_veiculo1`
+    FOREIGN KEY (`Placa`)
+    REFERENCES `projectphp`.`veiculo` (`Placa`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION)
+ENGINE = InnoDB
+DEFAULT CHARACTER SET = utf8;
+
+
+-- -----------------------------------------------------
+-- Table `projectphp`.`users`
+-- -----------------------------------------------------
+CREATE TABLE IF NOT EXISTS `projectphp`.`users` (
+  `Username` VARCHAR(45) NOT NULL,
+  `Password` VARCHAR(255) NOT NULL,
+  `Email` VARCHAR(45) NULL DEFAULT NULL,
+  PRIMARY KEY (`Username`))
+ENGINE = InnoDB
+DEFAULT CHARACTER SET = utf8;
+
+
+SET SQL_MODE=@OLD_SQL_MODE;
+SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS;
+SET UNIQUE_CHECKS=@OLD_UNIQUE_CHECKS;

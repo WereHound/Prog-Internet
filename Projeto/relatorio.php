@@ -7,7 +7,7 @@ require_once("database.php");
 
 try {
 
-    $stmt = $pdo->prepare("SELECT idOrdem, Data_de_Entrega_do_Veiculo, Data_de_Devolucao_do_Veiculo, Servico_idServico, Veiculo_Placa  FROM `ordem de servico`");
+    $stmt = $pdo->prepare("SELECT idOrdem, Data_de_Entrada_do_Veiculo, Data_de_Devolucao_do_Veiculo, idServico, Placa  FROM `ordem de servico`");
     $stmt->execute();
 
     $ordens = $stmt->fetchAll(PDO::FETCH_ASSOC);
@@ -97,10 +97,10 @@ try {
             <thead>
                 <tr>
                     <th>idOrdem</th>
-                    <th>Data_de_Entrega_do_Veiculo</th>
-                    <th>Data_de_Devolucao_do_Veiculo</th>
-                    <th>Servico_idServico</th>
-                    <th>Veiculo_Placa</th>
+                    <th>Data de Entrada do Veiculo</th>
+                    <th>Data de Devolucao do Veiculo</th>
+                    <th>idServico</th>
+                    <th>Placa</th>
                 </tr>
             </thead>
             <tbody>
@@ -108,10 +108,10 @@ try {
                     <?php foreach ($ordens as $ordem): ?>
                         <tr>
                             <td><?php echo htmlspecialchars($ordem['idOrdem']); ?></td>
-                            <td><?php echo htmlspecialchars($ordem['Data_de_Entrega_do_Veiculo']); ?></td>
+                            <td><?php echo htmlspecialchars($ordem['Data_de_Entrada_do_Veiculo']); ?></td>
                             <td><?php echo htmlspecialchars($ordem['Data_de_Devolucao_do_Veiculo']); ?></td>
-                            <td><?php echo htmlspecialchars($ordem['Servico_idServico']); ?></td>
-                            <td><?php echo htmlspecialchars($ordem['Veiculo_Placa']); ?></td>
+                            <td><?php echo htmlspecialchars($ordem['idServico']); ?></td>
+                            <td><?php echo htmlspecialchars($ordem['Placa']); ?></td>
                         </tr>
                     <?php endforeach; ?>
                 <?php else: ?>

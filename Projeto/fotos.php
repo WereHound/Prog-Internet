@@ -7,7 +7,7 @@ require_once("database.php");
 
 try {
 
-    $stmt = $pdo->prepare("SELECT idFoto, NomeDaFoto, CaminhoDaFoto FROM Foto");
+    $stmt = $pdo->prepare("SELECT idFoto, Nome_Da_Foto, Placa, Caminho_Da_Foto FROM foto");
     $stmt->execute();
 
     $Fotos = $stmt->fetchAll(PDO::FETCH_ASSOC);
@@ -24,8 +24,8 @@ try {
         <thead class="table-dark">
             <tr>
                 <th>idFoto</th>
-                <th>NomeDaFoto</th>
-                <th>CaminhoDaFoto</th>
+                <th>Nome Da Foto</th>
+                <th>Placa</th>
                 <th>Foto</th>
             </tr>
         </thead>
@@ -34,15 +34,15 @@ try {
                 <?php foreach ($Fotos as $Foto): ?>
                     <tr>
                         <td><?php echo htmlspecialchars($Foto['idFoto']); ?></td>
-                        <td><?php echo htmlspecialchars($Foto['NomeDaFoto']); ?></td>
-                        <td><?php echo htmlspecialchars($Foto['CaminhoDaFoto']); ?></td>
-                        <td><img src="http://<?php echo htmlspecialchars($Foto['CaminhoDaFoto']); ?>" alt="<?php echo htmlspecialchars($Foto['NomeDaFoto']); ?>"></td>
+                        <td><?php echo htmlspecialchars($Foto['Nome_Da_Foto']); ?></td>
+                        <td><?php echo htmlspecialchars($Foto['Placa']); ?></td>
+                        <td><img src="http://<?php echo htmlspecialchars($Foto['Caminho_Da_Foto']); ?>" alt="<?php echo htmlspecialchars($Foto['Nome_Da_Foto']); ?>" width="400"></td>
                         
                     </tr>
                 <?php endforeach; ?>
             <?php else: ?>
                 <tr>
-                    <td colspan="4" class="text-center">Nenhum Servico encontrado.</td>
+                    <td colspan="4" class="text-center">Nenhuma Foto encontrada.</td>
                 </tr>
             <?php endif; ?>
         </tbody>

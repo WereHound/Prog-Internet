@@ -1,0 +1,2 @@
+find the mysqld.cnf file in /etc/mysql/mysql.conf.d
+change the bind-address from 127.0.0.1 to 0.0.0.0 to allow external connections

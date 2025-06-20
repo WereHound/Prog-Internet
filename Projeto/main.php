@@ -23,6 +23,10 @@ try {
     $stmt->execute();
     $ordemCount = $stmt->fetchColumn();
 
+    $stmt = $pdo->prepare("SELECT COUNT(*) FROM `foto`");
+    $stmt->execute();
+    $fotoCount = $stmt->fetchColumn();
+
 } catch (Exception $e) {
     echo "Error: " . $e->getMessage();
 }
@@ -38,6 +42,7 @@ try {
                 <th>Servicos</th>
                 <th>Veiculos</th>
                 <th>Ordens</th>
+                <th>Fotos</th>
             </tr>
         </thead>
         <tbody>
@@ -47,6 +52,8 @@ try {
                 <td><?php echo $servicoCount; ?></td>
                 <td><?php echo $veiculoCount; ?></td>
                 <td><?php echo $ordemCount; ?></td>
+                <td><?php echo $fotoCount; ?></td>
+                
             </tr>
 
         </tbody>
@@ -56,7 +63,7 @@ try {
 
 
 <?php
-    $maxValue = max($clienteCount, $servicoCount, $veiculoCount, $ordemCount);
+    $maxValue = max($clienteCount, $servicoCount, $veiculoCount, $ordemCount, $fotoCount);
     $ticks = range(0, $maxValue); // increments of 1
 ?>
 <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
@@ -72,7 +79,8 @@ try {
             ['Clientes', <?php echo $clienteCount ?>],
             ['Servicos', <?php echo $servicoCount ?>],
             ['Veiculos', <?php echo $veiculoCount ?>],
-            ['Ordens', <?php echo $ordemCount ?>]
+            ['Ordens', <?php echo $ordemCount ?>],
+            ['Fotos', <?php echo $fotoCount ?>]
         ]);
 
         var options = {

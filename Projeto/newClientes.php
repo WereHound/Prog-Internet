@@ -53,12 +53,12 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             </div>
 
             <div class="mb-3">
-                <label for="Nome" class="form-label">Nome</label>
-                <input type="text" id="Nome" name="Nome" class="form-control" placeholder="Gabriel Murakami" required>
+                <label for="Nome" class="form-label">Nome (Optional)</label>
+                <input type="text" id="Nome" name="Nome" class="form-control" placeholder="Gabriel Murakami">
             </div>
 
             <div class="mb-3">
-                <label for="Telefone" class="form-label">Telefone</label>
+                <label for="Telefone" class="form-label">Telefone (Optional)</label>
                 <input type="text" id="Telefone" name="Telefone" class="form-control" placeholder="+55 (18) 1234-1234">
             </div>
 
